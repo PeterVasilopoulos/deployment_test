@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Recipe</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <div id="create-navbar">
+        <!-- Page Title -->
+        <h1 id="create-title">Welcome, {{user.first_name}}</h1>
+        <!-- Nav Buttons -->
+        <div id="create-buttons">
+            <!-- Back to recipes -->
+            <a href="/recipes">Back to recipes</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <!-- Recipe Information -->
+    <div id="vr-block">
+        <!-- Name and Creator -->
+        <div id="vr-top">
+            <h2>{{recipe.name}}</h2>
+            <p>Posted by: {{recipe.user.first_name}}</p>
+        </div>
+        <!-- Inside Recipe Block -->
+        <div id="vr-content">
+            <!-- Description -->
+            <div class="vr-item">
+                <p>Description:</p>
+                <p>{{recipe.description}}</p>
+            </div>
+            <!-- Under 30 -->
+            <div class="vr-item">
+                <p>Under 30 Minutes?</p>
+                <p>
+                    {% if recipe.under == 1 %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </p>
+            </div>
+            <!-- Instructions -->
+            <div class="vr-item">
+                <p>Instructions:</p>
+                <p>{{recipe.instructions}}</p>
+            </div>
+            <!-- Date -->
+            <div class="vr-item">
+                <p>Date:</p>
+                <p>{{recipe.date}}</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

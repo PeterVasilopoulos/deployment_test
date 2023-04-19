@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Recipe</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div id="create-navbar">
+        <!-- Page Title -->
+        <h1 id="create-title">Add a New Recipe!</h1>
+        <!-- Nav Buttons -->
+        <div id="create-buttons">
+            <!-- Back to recipes -->
+            <a href="/recipes">Back to recipes</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <!-- Flashed Messages -->
+    {% for message in get_flashed_messages() %}
+        <p class="error">{{message}}</p>
+    {% endfor %}
+
+    <!-- Create Recipe Form -->
+    <form action="/recipes/store" method="POST">
+        <div id="recipe-form">
+            <!-- Recipe Left -->
+            <div id="recipe-left">
+                <!-- Name -->
+                <div class="recipe-input">
+                    <label>Name:</label>
+                    <input type="text" name="name" class="ri">
+                </div>
+                <!-- Description -->
+                <div class="recipe-input">
+                    <label>Description:</label>
+                    <textarea name="description" id="" cols="30" rows="10" class="ri"></textarea>
+                </div>
+                <!-- Instructions -->
+                <div class="recipe-input">
+                    <label>Instructions:</label>
+                    <textarea name="instructions" id="" cols="30" rows="10" class="ri"></textarea>
+                </div>
+            </div>
+
+            <!-- Recipe Right -->
+            <div id="recipe-right">
+                <!-- Date Cooked -->
+                <div>
+                    <label>Date Cooked/Made:</label><br>
+                    <input type="date" name="date">
+                </div>
+                <!-- Under 30 Min -->
+                <div>
+                    <label>Under 30 minutes?</label><br>
+                    <div id="under-radio">
+                        <!-- Yes Option -->
+                        <div>
+                            <input type="radio" id="yes" name="under" value="1" checked>
+                            <label for="yes">Yes</label>
+                        </div>
+                        <!-- No Option -->
+                        <div>
+                            <input type="radio" id="no" name="under" value="0">
+                            <label for="no">No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hidden Input for User ID -->
+        <input type="hidden" name="user_id" value="{{session['uid']}}">
+
+        <!-- Submit Button -->
+        <div id="create-recipe-submit">
+            <button>Submit</button>
+        </div>
+    </form>
+
+</body>
+
+</html>
